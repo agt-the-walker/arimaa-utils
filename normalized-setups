@@ -1,0 +1,44 @@
+#!/bin/bash
+
+function MirrorColumn {
+    column=$1
+    case $column in
+        a) echo h;;
+        b) echo g;;
+        c) echo f;;
+        d) echo e;;
+        e) echo d;;
+        f) echo c;;
+        g) echo b;;
+        h) echo a;;
+    esac
+}
+
+function MirrorSetup {
+    sed "$mirror_sed"
+}
+
+### 1. Preparation
+
+mirror_sed=
+for column in {a..h}; do
+    mirror_sed+='s/\<\([[:alpha:]]\)'$column'\([1-8]\)\>/\1'$(MirrorColumn $column)'§\2/g;'
+done
+mirror_sed+='s/§//g'
+
+### 2. Execution
+
+sed 1d | \
+awk -F'\t' '{ print $28 }' | \
+awk 'BEGIN { 
+  FS = "\\\\n"; OFS = "\\n"
+} { 
+  print $1, $2
+}' | \
+while read -r line; do
+    if [[ "$line" = *E[e-h]* ]]; then
+        echo "$line" | MirrorSetup  # XXX: list from a1, a2... to h8
+    else
+        echo "$line"
+    fi
+done
