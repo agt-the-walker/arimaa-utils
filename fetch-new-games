@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+GAME_DIR="$HOME/data/Data - Arimaa"
+mkdir -p "$GAME_DIR"
+
+correct_size_found=
+lynx -dump -listonly -nonumbers http://arimaa.com/arimaa/download/gameData |
+egrep '/allgames[0-9]+\.tgz' | tac | while read url; do
+    file=$(basename "$url")
+    if [[ -e "$GAME_DIR/$file" ]]; then
+        if [[ -z "$correct_size_found" ]]; then
+            old_size=$(wc -c <"$GAME_DIR/$file")
+            new_size=$(wget --spider "$url" 2>&1 |
+                       awk '$1 == "Length:" { print $2 }')
+            if [[ $old_size = $new_size ]]; then
+                correct_size_found=1
+                continue
+            else
+                rm -f "$GAME_DIR/$file"
+            fi
+        else
+            # we don't bother checking the new size of allgames201409.tgz
+            # (and older) if the size of allgames201410.tgz was already correct
+            continue
+        fi
+    fi
+    wget --directory-prefix "$GAME_DIR" "$url"
+done
