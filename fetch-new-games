@@ -16,7 +16,7 @@ egrep '/allgames[0-9]+\.tgz' | tac | while read url; do
             continue
         fi
 
-        old_size=$(wc -c <"$GAME_DIR/$file")
+        old_size=$(stat -c %s "$GAME_DIR/$file")
         new_size=$(wget --spider "$url" 2>&1 |
                    awk '$1 == "Length:" { print $2 }')
         if [[ $old_size = $new_size ]]; then
