@@ -36,7 +36,7 @@ awk 'BEGIN {
   print $1, $2
 }' | \
 while read -r line; do
-    if [[ "$line" = *E[e-h]* ]]; then
+    if [[ "$line" = *E[a-d]* ]]; then
         echo "$line" | MirrorSetup  # XXX: list from a1, a2... to h8
     else
         echo "$line"
