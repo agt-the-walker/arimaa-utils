@@ -5,9 +5,12 @@ set -e
 GAME_DIR="$HOME/data/Data - Arimaa"
 mkdir -p "$GAME_DIR"
 
+GAME_DB="$GAME_DIR/allgames.txt"
+
 correct_size_found=
-lynx -dump -listonly -nonumbers http://arimaa.com/arimaa/download/gameData |
-egrep '/allgames[0-9]+\.tgz' | tac | while read url; do
+db_rebuild_required=
+
+while read url; do
     file=$(basename "$url")
     if [[ -e "$GAME_DIR/$file" ]]; then
         if [[ -n "$correct_size_found" ]]; then
@@ -27,4 +30,16 @@ egrep '/allgames[0-9]+\.tgz' | tac | while read url; do
         fi
     fi
     wget --directory-prefix "$GAME_DIR" "$url"
-done
+    db_rebuild_required=1
+done < <(lynx -dump -listonly -nonumbers \
+          http://arimaa.com/arimaa/download/gameData |
+         egrep '/allgames[0-9]+\.tgz' | tac)
+
+if [[ -n "$db_rebuild_required" ]]; then
+    >"$GAME_DB"
+    sed_command=  # noop
+    for archive in "$GAME_DIR"/*.tgz; do
+        tar xf "$archive" -O | sed "$sed_command" >>"$GAME_DB"
+        sed_command=1d  # remove header
+    done
+fi
