@@ -1,12 +1,15 @@
 #!/bin/bash
 
-GAME_FILE=allgames201404.txt
+set -e
 
-head -1 $GAME_FILE
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. "$SCRIPT_DIR/common.sh"
+
+head -1 "$GAME_DB"
 awk -F'\t' '
   $10 >= 1800 &&  # wrating
   $11 >= 1800 &&  # brating
   $14 == "h"  &&  # wtype
   $15 == "h"  &&  # btype
   $24 >= 10       # plycount
-' $GAME_FILE
+' "$GAME_DB"

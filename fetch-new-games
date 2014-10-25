@@ -2,10 +2,10 @@
 
 set -e
 
-GAME_DIR="$HOME/data/Data - Arimaa"
-mkdir -p "$GAME_DIR"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. "$SCRIPT_DIR/common.sh"
 
-GAME_DB="$GAME_DIR/allgames.txt"
+mkdir -p "$GAME_DIR"
 
 correct_size_found=
 db_rebuild_required=
