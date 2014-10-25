@@ -1,44 +1,67 @@
-#!/bin/bash
+#!/usr/bin/ruby
 
-function MirrorColumn {
-    column=$1
-    case $column in
-        a) echo h;;
-        b) echo g;;
-        c) echo f;;
-        d) echo e;;
-        e) echo d;;
-        f) echo c;;
-        g) echo b;;
-        h) echo a;;
-    esac
-}
+NB_COLUMNS = 8
+NB_PLAYERS = 2
+MOVELIST_COLUMN = 27  # i.e. 28th field
 
-function MirrorSetup {
-    sed "$mirror_sed"
-}
+def first_player(move_number)
+  move_number == '1w'
+end
 
-### 1. Preparation
+def print_setup(move_number, square2piece, setup_to_mirror)
+  if setup_to_mirror
+    mirror_board(square2piece)
+  end
 
-mirror_sed=
-for column in {a..h}; do
-    mirror_sed+='s/\<\([[:alpha:]]\)'$column'\([1-8]\)\>/\1'$(MirrorColumn $column)'§\2/g;'
-done
-mirror_sed+='s/§//g'
+  printf '%s %s', move_number,
+         square2piece.sort_by { |square, piece| square.reverse }\
+                     .collect { |row, piece| piece }\
+                     .each_slice(NB_COLUMNS)\
+                     .collect { |row| row.join }.join('/')
+  if first_player(move_number)
+    print '  '
+  else
+    print "\n"
+  end
+end
 
-### 2. Execution
+def mirror_board(square2piece)
+  res = {}  # square => piece
+  square2piece.each do |square, piece|
+    res[mirror_square(square)] = piece
+  end
+  square2piece.replace(res)
+end
 
-sed 1d | \
-awk -F'\t' '{ print $28 }' | \
-awk 'BEGIN { 
-  FS = "\\\\n"; OFS = "\\n"
-} { 
-  print $1, $2
-}' | \
-while read -r line; do
-    if [[ "$line" = *E[a-d]* ]]; then
-        echo "$line" | MirrorSetup  # XXX: list from a1, a2... to h8
-    else
-        echo "$line"
-    fi
-done
+def mirror_square(square)
+  square.sub(/^./) { |column| mirror_column(column) }
+end
+
+def mirror_column(column)
+  (2 * 'a'.ord + NB_COLUMNS - column.ord - 1).chr  # i.e. a => h, b => g, etc.
+end
+
+STDIN.each_with_index do |line, index|
+  next if index == 0  # header
+
+  setup_to_mirror = false
+
+  board_setup = line.split("\t")[MOVELIST_COLUMN].split("\\n").first(NB_PLAYERS)
+  board_setup.each do |player_setup|
+    move_number, placement = player_setup.split(' ', 2)
+
+    square2piece = {}
+    placement.split.each do |word|
+      piece = word[0].upcase
+      square = word[1..2]
+
+      if first_player(move_number) and piece == 'E' and square =~ /^[a-d]/
+        setup_to_mirror = true
+      end
+
+      square2piece[square] = piece
+    end
+
+    print_setup(move_number, square2piece, setup_to_mirror)
+  end
+end
