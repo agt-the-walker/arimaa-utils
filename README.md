@@ -1,6 +1,6 @@
-## Purpose
+# Purpose
 
-# fetch-new-games
+## fetch-new-games
 
 This script downloads new archived games from
 [Arimaa](http://arimaa.com/arimaa/) and will put them into
@@ -8,13 +8,13 @@ This script downloads new archived games from
 will also build a games database, which will be used by the two following
 scripts.
 
-# good-human-games
+## good-human-games
 
 This script only prints good human games from the games database built by
 `fetch-new-games`. Each human player should be rated at least 1800 and the game
 should last 10+ moves.
 
-# normalized-setups
+## normalized-setups
 
 This script, acting as a filter, is used in conjunction with the previous one
 and prints normalized
@@ -23,7 +23,7 @@ players. By convention, the Gold elephant is always placed on the right (from
 Gold's point of view).
 
 
-## Requirements
+# Requirements
 
 * [Bash](http://www.gnu.org/software/bash/)
 * [GNU Coreutils](http://www.gnu.org/software/coreutils/)
@@ -33,7 +33,7 @@ Gold's point of view).
 * [Ruby](http://www.ruby-lang.org/en/) 1.9.2+
 
 
-## Usage
+# Usage
 
     $ export PATH=~/src/git/arimaa-utils:$PATH  # adapt accordingly
 
@@ -53,7 +53,7 @@ Gold's point of view).
      28 1w RRRRRRRR/DHCMECHD  1b RHCEMCHR/RRRDDRRR
 
 
-## Limitations
+# Limitations
 
 `fetch-new-games` is very slow when it has to rebuild the games database. I
 should probably use [SQLite](http://www.sqlite.org/) instead, as in
