@@ -3,10 +3,9 @@
 ## fetch-new-games
 
 This script downloads new archived games from
-[Arimaa](http://arimaa.com/arimaa/) and will put them into
-`$HOME/data/Data - Arimaa/` (this location can be changed in `common.sh`). It
-will also build a games database, which will be used by the two following
-scripts.
+[Arimaa](http://arimaa.com/arimaa/) into `$HOME/data/Data - Arimaa/` (this
+location can be changed in `common.sh`). It also builds a games database in
+the same location, which will be used by the two following scripts.
 
 ## good-human-games
 
@@ -37,7 +36,7 @@ Gold's point of view).
 
     $ export PATH=~/src/git/arimaa-utils:$PATH  # adapt accordingly
 
-    $ fetch-new-games  # will take a while, especially the first time
+    $ fetch-new-games  # takes a while, especially the first time
 
     # the following command prints the most common setups in good human games
     $ good-human-games | normalized-setups | sort | uniq -c | sort -rn | head
