@@ -35,7 +35,7 @@ done < <(lynx -dump -listonly -nonumbers \
           http://arimaa.com/arimaa/download/gameData |
          egrep '/allgames[0-9]+\.tgz' | tac)
 
-if [[ -n "$db_rebuild_required" ]]; then
+if [[ ! -f $GAME_DB || -n "$db_rebuild_required" ]]; then
     >"$GAME_DB"
     sed_command=  # noop
     for archive in "$GAME_DIR"/*.tgz; do
