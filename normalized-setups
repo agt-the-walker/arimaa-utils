@@ -2,6 +2,7 @@
 
 NB_COLUMNS = 8
 NB_PLAYERS = 2
+PLYCOUNT_COLUMN = 23  # i.e. 24th field
 MOVELIST_COLUMN = 27  # i.e. 28th field
 
 def first_player(move_number)
@@ -41,13 +42,27 @@ def mirror_column(column)
   (2 * 'a'.ord + NB_COLUMNS - column.ord - 1).chr  # i.e. a => h, b => g, etc.
 end
 
-STDIN.each_with_index do |line, index|
+stream = if STDIN.tty?
+           GAME_DB=%x{. #{File.dirname(__FILE__)}/common.sh
+                      echo $GAME_DB}.chomp
+           open(GAME_DB)
+         else
+           STDIN
+         end
+stream.each_with_index do |line, index|
   next if index == 0  # header
 
-  setup_to_mirror = false
+  fields = line.force_encoding('BINARY').split("\t")
+  next if fields[PLYCOUNT_COLUMN].to_i < NB_PLAYERS
 
-  board_setup = line.split("\t")[MOVELIST_COLUMN].split("\\n").first(NB_PLAYERS)
-  board_setup.each do |player_setup|
+  moves = fields[MOVELIST_COLUMN].split("\\n")
+  if moves[1] == '1b takeback'
+    # move sequence is: 1w foo, 1b takeback, 1w bar, 1b baz
+    moves.shift(2)  # therefore we only keep: 1w bar, 1b baz
+  end
+
+  setup_to_mirror = false
+  moves.first(NB_PLAYERS).each do |player_setup|
     move_number, placement = player_setup.split(' ', 2)
 
     square2piece = {}
