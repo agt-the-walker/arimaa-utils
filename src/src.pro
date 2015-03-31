@@ -9,6 +9,8 @@ TEMPLATE = app
 TARGET = testrunner
 INCLUDEPATH += .
 
-# Input
+DEFINES += QT_NO_CAST_FROM_ASCII \
+           QT_NO_CAST_TO_ASCII
+
 HEADERS += movelist.h testmovelist.h
 SOURCES += testmovelist.cpp
