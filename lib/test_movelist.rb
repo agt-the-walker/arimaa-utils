@@ -15,7 +15,7 @@ class TestMoveList < Test::Unit::TestCase
   end
 
   def test_plies
-    expected_plies = [28, 9, 76, 75, 122, 61, 82, 134, 92]
+    expected_plies = [28, 9, 76, 75, 122, 61, 82, 134, 92, 17]
     @@move_lists.each do |game_id, move_list|
       assert_equal(expected_plies.shift, move_list.plies, game_id)
     end
@@ -38,6 +38,7 @@ class TestMoveList < Test::Unit::TestCase
     [[2077, 76, '39g 1r5r/1dhr2rR/1H1Rr1dE/3e2R1/8/3R1hcR/5RDr/4r1DR'],
      [3917, 75, '38s 1r3R1r/1Dr3r1/r7/RHeE1H2/r7/R3r3/3R1MC1/2R2hRR'],
      [87015, 55, '28s rrr2rr1/2cdcd1r/3h2r1/8/HDE5/1r2e3/RRCD2C1/1RR2RRR'],
+     [90687, 17, '9s rcrrrr1r/h4r1d/8/3E4/1d1m2c1/1H1Me1D1/1DCR1CRH/RRR1RRR1'],
     ].each do |game_id, ply, fen|  # first ply is 1 not 0
       assert_equal(fen, @@move_lists[game_id].each.drop(ply - 1).first)
     end

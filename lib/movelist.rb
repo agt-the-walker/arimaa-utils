@@ -11,8 +11,10 @@ class MoveList
     movelist.split('\n').each do |move|
       if move.end_with?('takeback')
         @moves.pop
+      elsif move !~ /^[1-9]/  # for instance: 7b\n rc7s rc6s db6s db5s
+        @moves[-1] += move
       else
-        @moves << move.sub(/^\w+\s+/, '')  # remove first word (move number)
+        @moves << move.sub(/^\w+\s?/, '')  # remove first word (move number)
       end
     end
     @moves.pop  # movelist typically ends with 39w or 50b, which can be ignored
