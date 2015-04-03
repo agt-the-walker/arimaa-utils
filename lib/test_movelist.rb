@@ -5,7 +5,7 @@ require_relative 'movelist'
 
 class TestMoveList < Test::Unit::TestCase
   def test_plies
-    expected_plies = [76, 75, 122, 61, 82, 134, 92]
+    expected_plies = [28, 9, 76, 75, 122, 61, 82, 134, 92]
     Dir['testdata/*.txt'].sort.each do |path|
       assert_equal(expected_plies.shift, MoveList.new(IO.read(path)).plies,
                    path)
