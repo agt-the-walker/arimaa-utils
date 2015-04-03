@@ -18,7 +18,7 @@ GetoptLong.new(
   options[name.sub(/^--/, '').to_sym] = value
 end
 
-if options['help'] or not ARGV.empty?
+if options[:help] or not ARGV.empty?
   usage
 end
 
