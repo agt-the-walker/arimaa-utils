@@ -15,7 +15,7 @@ class TestMoveList < Test::Unit::TestCase
   end
 
   def test_plies
-    expected_plies = [28, 9, 76, 75, 122, 61, 109, 82, 134, 92, 17]
+    expected_plies = [28, 9, 76, 75, 122, 71, 61, 109, 82, 134, 92, 17]
     @@move_lists.each do |game_id, move_list|
       assert_equal(expected_plies.shift, move_list.plies, game_id)
     end
@@ -46,26 +46,29 @@ class TestMoveList < Test::Unit::TestCase
   end
 
   def test_fen_skip_duplicates
-    game_id = 72330
-    fens = @@move_lists[game_id].each.to_a
-    unique_fens = @@move_lists[game_id].each(:skip_duplicates => true).to_a
+    [[40260, ['32s 3crch1/2rrrHrr/r2EdMHr/ChmReRRR/dRD1C3/RD6/R6R/8',
+              '33s 3crch1/2rrrHrr/r2EdMHr/ChmReRRR/dRD1C3/RD6/R3R3/8',
+              '34g 3crch1/2rrrHrr/r2EdMHr/ChmReRRR/dR2C3/RDD5/R3R3/8',
+              '35s 3crch1/2rrrHrr/r2EdMHr/ChmReRRR/dRD1C3/RD6/RR6/8',
+              '36g 3crch1/2rrrHrr/r2EdMHr/ChmReRRR/dR2C3/RDD5/RR6/8',
+              '36s 3crch1/2rrrHrr/r2EdMHr/ChmReRRR/dRD1C3/RD6/RR6/8']],
+     [72330, ['8g rrr2rrr/1dcc1d1r/rh1E1mh1/1He5/8/3D1MH1/R1C1DC1R/RRR2RRR',
+              '8s rrr2rrr/1dc2d1r/rh1E1mh1/1Hec4/8/3D1MH1/R1C1DC1R/RRR2RRR',
+              '12g rrr2rrr/1dc1cd1r/rh1E1mh1/8/He6/1DM3H1/R1C1DC1R/RRR2RRR',
+              '12s rrr2rrr/1dc1cd1r/rh1E1mh1/1H6/1e6/1DM3H1/R1C1DC1R/RRR2RRR',
+              '14g rrr2rrr/1dc1cd1r/rh1E1mh1/2eH4/8/1DM3H1/R1C1DC1R/RRR2RRR',
+              '14s rrr2rrr/1dc1cd1r/rh1E1mh1/1He5/8/1DM3H1/R1C1DC1R/RRR2RRR',
+              '27g rrr2rrr/1dc1cdhr/Hh1E2m1/8/De6/r2D2MH/R1C2C1R/RRR2RRR',
+              '27s rrr2rrr/1dc1cdhr/Hh1E2m1/8/1e6/Dr1D2MH/R1C2C1R/RRR2RRR',
+              '35g 1r3rrr/r1r1cdhr/dH1E1m2/2hD4/3e4/RD4H1/r1C1MC1R/RRRcR1RR',
+              '35s 1r3rrr/r1r1cdhr/dH1E1m2/2hD4/3e4/RD4H1/r1CcMC1R/RRRR2RR']],
+    ].each do |game_id, duplicate_fens|
+      fens = @@move_lists[game_id].each.to_a
+      unique_fens = @@move_lists[game_id].each(:skip_duplicates => true).to_a
 
-    assert_equal(fens.size, unique_fens.size)
-
-    duplicate_fens = [
-      '8g rrr2rrr/1dcc1d1r/rh1E1mh1/1He5/8/3D1MH1/R1C1DC1R/RRR2RRR',
-      '8s rrr2rrr/1dc2d1r/rh1E1mh1/1Hec4/8/3D1MH1/R1C1DC1R/RRR2RRR',
-      '12g rrr2rrr/1dc1cd1r/rh1E1mh1/8/He6/1DM3H1/R1C1DC1R/RRR2RRR',
-      '12s rrr2rrr/1dc1cd1r/rh1E1mh1/1H6/1e6/1DM3H1/R1C1DC1R/RRR2RRR',
-      '14g rrr2rrr/1dc1cd1r/rh1E1mh1/2eH4/8/1DM3H1/R1C1DC1R/RRR2RRR',
-      '14s rrr2rrr/1dc1cd1r/rh1E1mh1/1He5/8/1DM3H1/R1C1DC1R/RRR2RRR',
-      '27g rrr2rrr/1dc1cdhr/Hh1E2m1/8/De6/r2D2MH/R1C2C1R/RRR2RRR',
-      '27s rrr2rrr/1dc1cdhr/Hh1E2m1/8/1e6/Dr1D2MH/R1C2C1R/RRR2RRR',
-      '35g 1r3rrr/r1r1cdhr/dH1E1m2/2hD4/3e4/RD4H1/r1C1MC1R/RRRcR1RR',
-      '35s 1r3rrr/r1r1cdhr/dH1E1m2/2hD4/3e4/RD4H1/r1CcMC1R/RRRR2RR',
-    ]
-
-    assert_equal(duplicate_fens, fens - unique_fens)
-    assert_equal(fens.size - duplicate_fens.size, unique_fens.compact.size)
+      assert_equal(fens.size, unique_fens.size)
+      assert_equal(duplicate_fens, fens - unique_fens)
+      assert_equal(fens.size - duplicate_fens.size, unique_fens.compact.size)
+    end
   end
 end
