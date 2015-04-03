@@ -30,7 +30,7 @@ class TestMoveList < Test::Unit::TestCase
      [87015, ['1s 8/8/8/8/8/8/RHCMECHR/RDRRDRRR',
               '2g rrrdcrrr/rhcemdhr/8/8/8/8/RHCMECHR/RDRRDRRR']],
     ].each do |game_id, fens|
-      assert_equal(fens, @@move_lists[game_id].each.first(2))
+      assert_equal(fens, @@move_lists[game_id].each.first(NB_PLAYERS))
     end
   end
 

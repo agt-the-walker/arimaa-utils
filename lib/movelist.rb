@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
+require_relative 'common'
+
 class MoveList
-  BOARD_SIZE = 8
   COLUMN_RANGE = Range.new('a', ('a'.ord + BOARD_SIZE).chr, true)
   ROW_RANGE = Range.new(1.to_s, BOARD_SIZE.to_s)
 
@@ -28,12 +29,12 @@ class MoveList
     @board = {}  # key: square (for instance e4)
 
     @moves.each_with_index do |move, ply|
-      move_number = "#{(ply + 1) / 2 + 1}#{ply.odd? ? 'g' : 's'}"
+      move_number = "#{(ply + 1) / NB_PLAYERS + 1}#{ply.odd? ? 'g' : 's'}"
 
       move.split(' ').each do |step|
         piece = step[0]
         square = step[1..2]
-        if ply < 2  # initial position setup
+        if ply < NB_PLAYERS  # initial position setup
           @board[square] = piece
         elsif step[3] == 'x'  # piece capture
           @board.delete(square)

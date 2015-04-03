@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
-NB_COLUMNS = 8
-NB_PLAYERS = 2
+require_relative 'lib/common'
+
 PLYCOUNT_COLUMN = 23  # i.e. 24th field
 MOVELIST_COLUMN = 27  # i.e. 28th field
 
@@ -17,7 +17,7 @@ def print_setup(move_number, square2piece, setup_to_mirror)
   printf '%s %s', move_number,
          square2piece.sort_by { |square, piece| square.reverse }\
                      .collect { |row, piece| piece }\
-                     .each_slice(NB_COLUMNS)\
+                     .each_slice(BOARD_SIZE)\
                      .collect { |row| row.join }.join('/')
   if first_player(move_number)
     print '  '
@@ -39,7 +39,7 @@ def mirror_square(square)
 end
 
 def mirror_column(column)
-  (2 * 'a'.ord + NB_COLUMNS - column.ord - 1).chr  # i.e. a => h, b => g, etc.
+  (2 * 'a'.ord + BOARD_SIZE - column.ord - 1).chr  # i.e. a => h, b => g, etc.
 end
 
 stream = if STDIN.tty?
