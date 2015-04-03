@@ -12,8 +12,8 @@ end
 options = {}
 GetoptLong.new(
   ['--help', '-h', GetoptLong::NO_ARGUMENT],
-	['--normalize', '-n', GetoptLong::NO_ARGUMENT],
-	['--skip_duplicates', '-s', GetoptLong::NO_ARGUMENT]
+  ['--normalize', '-n', GetoptLong::NO_ARGUMENT],
+  ['--skip_duplicates', '-s', GetoptLong::NO_ARGUMENT]
 ).each do |name, value|
   options[name.sub(/^--/, '').to_sym] = value
 end
