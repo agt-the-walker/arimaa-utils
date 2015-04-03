@@ -6,12 +6,13 @@ require_relative 'lib/movelist'
 ##### Argument parsing
 
 def usage()
-  abort "Usage: #$0 [-s|--skip_duplicates]"
+  abort "Usage: #$0 [-n|--normalize] [-s|--skip_duplicates]"
 end
 
 options = {}
 GetoptLong.new(
   ['--help', '-h', GetoptLong::NO_ARGUMENT],
+	['--normalize', '-n', GetoptLong::NO_ARGUMENT],
 	['--skip_duplicates', '-s', GetoptLong::NO_ARGUMENT]
 ).each do |name, value|
   options[name.sub(/^--/, '').to_sym] = value

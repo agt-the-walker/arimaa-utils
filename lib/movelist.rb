@@ -60,7 +60,7 @@ class MoveList
         end
       end
 
-      fen = "#{move_player} #{current_fen}"
+      fen = "#{move_player} #{current_fen(options[:normalize])}"
       if options[:skip_duplicates]
         if visited_fens.include?(fen)
           next
@@ -75,7 +75,9 @@ class MoveList
 
 private
 
-  def current_fen
+  def current_fen(normalize)
+    normalize_cmp = 0
+
     ROW_RANGE.collect do |row|
       buffer = ''
       empty_nb = 0
@@ -96,7 +98,11 @@ private
         buffer << empty_nb.to_s
       end
 
-      buffer
+      if normalize and normalize_cmp == 0
+        normalize_cmp = buffer <=> buffer.reverse
+      end
+      normalize_cmp <= 0 ? buffer : buffer.reverse
+
     end.reverse.join('/')
   end
 end
