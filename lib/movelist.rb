@@ -63,13 +63,13 @@ class MoveList
       fen = "#{move_player} #{current_fen}"
       if options[:skip_duplicates]
         if visited_fens.include?(fen)
-          fen = nil
+          next
         else
           visited_fens << fen
         end
       end
 
-      yield (fen ? "#{move_number}#{fen}" : nil)
+      yield "#{move_number}#{fen}"
     end
   end
 

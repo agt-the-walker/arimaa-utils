@@ -38,8 +38,6 @@ stream.each_with_index do |line, index|
 
   fields = line.force_encoding('BINARY').split("\t")
   MoveList.new(fields[MOVELIST_COLUMN]).each(options) do |fen|
-    if fen
-      puts "#{fields[GAMEID_COLUMN]}\t#{fen}"
-    end
+    puts "#{fields[GAMEID_COLUMN]}\t#{fen}"
   end
 end
