@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'set'
 require_relative 'common'
 
 class MoveList
@@ -24,11 +25,13 @@ class MoveList
     @moves.size
   end
 
-  def each
+  def each(**options)
     # http://blog.arkency.com/2014/01/ruby-to-enum-for-enumerator/
-    return enum_for(:each) unless block_given?
+    return enum_for(__method__, options) unless block_given?
 
     @board = {}  # key: square (for instance e4)
+
+    visited_fens = options[:skip_duplicates] ? Set.new : nil
 
     @moves.each_with_index do |move, ply|
       move_number = "#{(ply + 1) / NB_PLAYERS + 1}#{ply.odd? ? 'g' : 's'}"
@@ -56,13 +59,22 @@ class MoveList
         end
       end
 
-      yield "#{move_number} #{fen}"
+      fen = current_fen
+      if options[:skip_duplicates]
+        if visited_fens.include?(fen)
+          fen = nil
+        else
+          visited_fens << fen
+        end
+      end
+
+      yield (fen ? "#{move_number} #{fen}" : nil)
     end
   end
 
 private
 
-  def fen
+  def current_fen
     ROW_RANGE.collect do |row|
       buffer = ''
       empty_nb = 0
