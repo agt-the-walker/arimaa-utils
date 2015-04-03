@@ -6,8 +6,6 @@ class MoveList
   ROW_RANGE = Range.new(1.to_s, BOARD_SIZE.to_s)
 
   def initialize(movelist)
-    @board = {}  # key: square (for instance e4)
-
     @moves = []
     movelist.split('\n').each do |move|
       if move.end_with?('takeback')
@@ -26,6 +24,8 @@ class MoveList
   def each
     # http://blog.arkency.com/2014/01/ruby-to-enum-for-enumerator/
     return enum_for(:each) unless block_given?
+
+    @board = {}  # key: square (for instance e4)
 
     @moves.each_with_index do |move, ply|
       move_number = "#{(ply + 1) / 2 + 1}#{ply.odd? ? 'g' : 's'}"

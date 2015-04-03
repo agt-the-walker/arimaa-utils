@@ -26,7 +26,9 @@ class TestMoveList < Test::Unit::TestCase
     [[33, ['1s 8/8/8/8/8/8/HDRMECDH/RRRRRRCR',
            '2g rrcrrcrr/hdremrdh/8/8/8/8/HDRMECDH/RRRRRRCR']],
      [138, ['1s 8/8/8/8/8/8/HDCMECDH/RRRRRRRR',
-            '2g rrrrerrr/hdcmrcdh/8/8/8/8/HDCMECDH/RRRRRRRR']]
+            '2g rrrrerrr/hdcmrcdh/8/8/8/8/HDCMECDH/RRRRRRRR']],
+     [87015, ['1s 8/8/8/8/8/8/RHCMECHR/RDRRDRRR',
+              '2g rrrdcrrr/rhcemdhr/8/8/8/8/RHCMECHR/RDRRDRRR']],
     ].each do |game_id, fens|
       assert_equal(fens, @@move_lists[game_id].each.first(2))
     end
