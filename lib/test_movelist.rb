@@ -31,4 +31,13 @@ class TestMoveList < Test::Unit::TestCase
       assert_equal(fens, @@move_lists[game_id].each.first(2))
     end
   end
+
+  def test_fen_position
+    [[2077, 76, '39g 1r5r/1dhr2rR/1H1Rr1dE/3e2R1/8/3R1hcR/5RDr/4r1DR'],
+     [3917, 75, '38s 1r3R1r/1Dr3r1/r7/RHeE1H2/r7/R3r3/3R1MC1/2R2hRR'],
+     [87015, 55, '28s rrr2rr1/2cdcd1r/3h2r1/8/HDE5/1r2e3/RRCD2C1/1RR2RRR'],
+    ].each do |game_id, ply, fen|  # first ply is 1 not 0
+      assert_equal(fen, @@move_lists[game_id].each.drop(ply - 1).first)
+    end
+  end
 end

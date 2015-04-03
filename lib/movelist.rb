@@ -29,9 +29,30 @@ class MoveList
 
     @moves.each_with_index do |move, ply|
       move_number = "#{(ply + 1) / 2 + 1}#{ply.odd? ? 'g' : 's'}"
+
       move.split(' ').each do |step|
-        @board[step[1..2]] = step[0]
+        piece = step[0]
+        square = step[1..2]
+        if ply < 2  # initial position setup
+          @board[square] = piece
+        elsif step[3] == 'x'  # piece capture
+          @board.delete(square)
+        else  # piece move
+          dest_column = case step[3]
+                          when 'e' then (square[0].ord + 1).chr
+                          when 'w' then (square[0].ord - 1).chr
+                          else square[0]
+                        end
+          dest_row = case step[3]
+                       when 'n' then (square[1].ord + 1).chr
+                       when 's' then (square[1].ord - 1).chr
+                       else square[1]
+                     end
+          @board[dest_column + dest_row] = piece
+          @board.delete(square)
+        end
       end
+
       yield "#{move_number} #{fen}"
     end
   end
