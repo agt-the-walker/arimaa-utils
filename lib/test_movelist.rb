@@ -23,10 +23,10 @@ class TestMoveList < Test::Unit::TestCase
   end
 
   def test_fen_setup
-    [[33, ['1g 8/8/8/8/8/8/HDRMECDH/RRRRRRCR',
-           '1s rrcrrcrr/hdremrdh/8/8/8/8/HDRMECDH/RRRRRRCR']],
-     [138, ['1g 8/8/8/8/8/8/HDCMECDH/RRRRRRRR',
-            '1s rrrrerrr/hdcmrcdh/8/8/8/8/HDCMECDH/RRRRRRRR']]
+    [[33, ['1s 8/8/8/8/8/8/HDRMECDH/RRRRRRCR',
+           '2g rrcrrcrr/hdremrdh/8/8/8/8/HDRMECDH/RRRRRRCR']],
+     [138, ['1s 8/8/8/8/8/8/HDCMECDH/RRRRRRRR',
+            '2g rrrrerrr/hdcmrcdh/8/8/8/8/HDCMECDH/RRRRRRRR']]
     ].each do |game_id, fens|
       assert_equal(fens, @@move_lists[game_id].each.first(2))
     end

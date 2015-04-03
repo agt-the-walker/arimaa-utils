@@ -28,7 +28,7 @@ class MoveList
     return enum_for(:each) unless block_given?
 
     @moves.each_with_index do |move, ply|
-      move_number = "#{ply / 2 + 1}#{ply.even? ? 'g' : 's'}"
+      move_number = "#{(ply + 1) / 2 + 1}#{ply.odd? ? 'g' : 's'}"
       move.split(' ').each do |step|
         @board[step[1..2]] = step[0]
       end
