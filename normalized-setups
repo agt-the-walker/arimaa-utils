@@ -60,6 +60,10 @@ stream.each_with_index do |line, index|
     # move sequence is: 1w foo, 1b takeback, 1w bar, 1b baz
     moves.shift(2)  # therefore we only keep: 1w bar, 1b baz
   end
+  if moves[2] == '2w takeback'
+    # move sequence is: 1w foo, 1b bar, 2w takeback, 1b baz
+    moves.slice!(1, 2)  # therefore we only keep: 1w foo, 1b baz
+  end
 
   setup_to_mirror = false
   moves.first(NB_PLAYERS).each do |player_setup|
