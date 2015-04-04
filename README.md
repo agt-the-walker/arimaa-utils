@@ -10,8 +10,8 @@ the same location, which will be used by the two following scripts.
 ## good-human-games
 
 This script only prints good human games from the games database built by
-`fetch-new-games`. Each human player should be rated at least 1800 and the game
-should last 10+ moves.
+`fetch-new-games`. Each human player should be rated at least 1800 and the
+game, rated, should last 10+ moves.
 
 ## normalized-setups
 
@@ -40,29 +40,29 @@ on the right (from Gold's point of view).
 
     # the following command prints the most common setups in all games
     $ normalized-setups | sort | uniq -c | sort -rn | head
-       6539 1w RRRDDRRR/RHCMECHR  1b RHCEMCHR/RRRDDRRR
-       5445 1w RRRRRRRR/DHCMECHD  1b DHCEMCHD/RRRRRRRR
-       4861 1w RRRCCRRR/RHDMEDHR  1b RHCEMCHR/RRRDDRRR
-       4527 1w RRRDDRRR/RHCMECHR  1b RHDEMDHR/RRRCCRRR
-       4031 1w RRRRRRRR/DHCMECHD  1b RHCEMCHR/RRRDDRRR
-       3807 1w RRRCCRRR/RHDMEDHR  1b RHDEMDHR/RRRCCRRR
-       3734 1w RRRRRRRR/DHCMECHD  1b RHDEMDHR/RRRCCRRR
-       3460 1w RRRDDRRR/RHCMECHR  1b DHCEMCHD/RRRRRRRR
-       3454 1w RRRCCRRR/RHDMEDHR  1b DHCEMCHD/RRRRRRRR
-       1731 1w RRRRRRRR/DHCMECHD  1b DHCMECHD/RRRRRRRR
+       6577 1w RRRDDRRR/RHCMECHR  1b RHCEMCHR/RRRDDRRR
+       5464 1w RRRRRRRR/DHCMECHD  1b DHCEMCHD/RRRRRRRR
+       4878 1w RRRCCRRR/RHDMEDHR  1b RHCEMCHR/RRRDDRRR
+       4545 1w RRRDDRRR/RHCMECHR  1b RHDEMDHR/RRRCCRRR
+       4056 1w RRRRRRRR/DHCMECHD  1b RHCEMCHR/RRRDDRRR
+       3810 1w RRRCCRRR/RHDMEDHR  1b RHDEMDHR/RRRCCRRR
+       3743 1w RRRRRRRR/DHCMECHD  1b RHDEMDHR/RRRCCRRR
+       3485 1w RRRDDRRR/RHCMECHR  1b DHCEMCHD/RRRRRRRR
+       3460 1w RRRCCRRR/RHDMEDHR  1b DHCEMCHD/RRRRRRRR
+       1735 1w RRRRRRRR/DHCMECHD  1b DHCMECHD/RRRRRRRR
 
     # the following command prints the most common setups in good human games
     $ good-human-games | normalized-setups | sort | uniq -c | sort -rn | head
-        269 1w RRRDDRRR/RHCMECHR  1b RHCEMCHR/RRRDDRRR
-        184 1w RRRDDRRR/RHCMECHR  1b RHDEMDHR/RRRCCRRR
-        164 1w RRRCCRRR/RHDMEDHR  1b RHCEMCHR/RRRDDRRR
-        119 1w RRRCCRRR/RHDMEDHR  1b RHDEMDHR/RRRCCRRR
-         75 1w RRRDDRRR/RHCMECHR  1b RHCDEDMH/RRRRRCRR
-         33 1w RRRDDRRR/RHCMECHR  1b HMCEDCHR/RRRDRRRR
+        257 1w RRRDDRRR/RHCMECHR  1b RHCEMCHR/RRRDDRRR
+        176 1w RRRDDRRR/RHCMECHR  1b RHDEMDHR/RRRCCRRR
+        159 1w RRRCCRRR/RHDMEDHR  1b RHCEMCHR/RRRDDRRR
+        114 1w RRRCCRRR/RHDMEDHR  1b RHDEMDHR/RRRCCRRR
+         60 1w RRRDDRRR/RHCMECHR  1b RHCDEDMH/RRRRRCRR
          32 1w RRRCDRRR/RHDMECHR  1b RHCEMCHR/RRRDDRRR
          31 1w RRRDDRRR/RHCMECHR  1b RHCEMDHR/RRRDCRRR
-         31 1w RRRDDRRR/RHCMECHR  1b RHCDECMH/RRRRDRRR
-         31 1w RCRDDRCR/RHRMERHR  1b RHCEMCHR/RRRDDRRR
+         31 1w RRRDDRRR/RHCMECHR  1b HMCEDCHR/RRRDRRRR
+         28 1w RRRRRRRR/DHCMECHD  1b RHCEMCHR/RRRDDRRR
+         28 1w RRRDDRRR/RHCMECHR  1b RHCDECMH/RRRRDRRR
 
 
 # Limitations
