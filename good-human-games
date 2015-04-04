@@ -11,5 +11,6 @@ awk -F'\t' '
   $11 >= 1800 &&  # brating
   $14 == "h"  &&  # wtype
   $15 == "h"  &&  # btype
-  $24 >= 10       # plycount
+  $24 >= 10   &&  # plycount
+  $26 == 1        # rated
 ' "$GAME_DB"
