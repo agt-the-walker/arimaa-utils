@@ -6,6 +6,7 @@ require_relative 'common'
 class MoveList
   COLUMN_RANGE = Range.new('a', ('a'.ord + BOARD_SIZE).chr, true)
   ROW_RANGE = Range.new(1.to_s, BOARD_SIZE.to_s)
+  PECKING_ORDER = 'rcdhme'  # from weakest to strongest
 
   def initialize(movelist)
     @moves = []
@@ -31,6 +32,9 @@ class MoveList
 
     @board = {}  # key: square (for instance e4)
 
+    # piece type => number of them on the board for all players
+    nb_pieces = options[:normalize] ? Hash.new(0) : nil
+
     visited_fens = options[:skip_duplicates] ? Set.new : nil
 
     @moves.each_with_index do |move, ply|
@@ -38,12 +42,23 @@ class MoveList
       move_player = ply.odd? ? 'g' : 's'
 
       move.split(' ').each do |step|
-        piece = step[0]
         square = step[1..2]
         if ply < NB_PLAYERS  # initial position setup
+          piece = step[0]
+
           @board[square] = piece
+          if options[:normalize]
+            nb_pieces[piece.downcase] += 1
+          end
         elsif step[3] == 'x'  # piece capture
-          @board.delete(square)
+          piece = @board.delete(square)
+
+          if options[:normalize]
+            nb_pieces[piece.downcase] -= 1
+            if nb_pieces[piece.downcase] == 0  # last one was just captured
+              downgrade_stronger_pieces(piece.downcase, nb_pieces)
+            end
+          end
         else  # piece move
           dest_column = case step[3]
                           when 'e' then (square[0].ord + 1).chr
@@ -55,8 +70,7 @@ class MoveList
                        when 's' then (square[1].ord - 1).chr
                        else square[1]
                      end
-          @board[dest_column + dest_row] = piece
-          @board.delete(square)
+          @board[dest_column + dest_row] = @board.delete(square)
         end
       end
 
@@ -74,6 +88,28 @@ class MoveList
   end
 
 private
+
+  def downgrade_stronger_pieces(piece, nb_pieces)
+    nb_pieces.delete(piece)
+
+    (PECKING_ORDER.index(piece)+1).upto(PECKING_ORDER.size-1) do |index|
+      stronger_piece = PECKING_ORDER[index]
+      if nb_pieces[stronger_piece]
+        weaker_piece = PECKING_ORDER[index-1]
+        nb_pieces[weaker_piece] = nb_pieces.delete(stronger_piece)
+
+        @board.each do |square, piece|
+          if piece.downcase == stronger_piece
+            @board[square] = if piece =~ /[A-Z]/
+                               weaker_piece.upcase
+                             else
+                               weaker_piece
+                             end
+          end
+        end
+      end
+    end
+  end
 
   def current_fen(normalize)
     normalize_cmp = 0

@@ -35,7 +35,10 @@ class TestMoveList < Test::Unit::TestCase
   end
 
   def test_fen_position
-    [[2077, '39g 1r5r/1dhr2rR/1H1Rr1dE/3e2R1/8/3R1hcR/5RDr/4r1DR'],
+     # with elephants but no camels
+    [[2077, '39g 1r5r/1dhr2rR/1H1Rr1dE/3e2R1/8/3R1hcR/5RDr/4r1DR',
+            '39g 1r5r/1dhr2rR/1H1Rr1dM/3m2R1/8/3R1hcR/5RDr/4r1DR'],
+
      [3917, '38s 1r3R1r/1Dr3r1/r7/RHeE1H2/r7/R3r3/3R1MC1/2R2hRR'],
 
      # row 1 symmetrical
@@ -46,13 +49,17 @@ class TestMoveList < Test::Unit::TestCase
      [40260, '25s 3crch1/1rrrrHrr/3EdMHr/dhmReRRR/RDC1C3/RD6/2R2R2/8',
              '25s 1hcrc3/rrHrrrr1/rHMdE3/RRReRmhd/3C1CDR/6DR/2R2R2/8'],
 
-     # completely symmetrical
-     [75005, '40g rrrrrrrr/8/8/8/8/8/2d2d2/8'],
+     # completely symmetrical, with dogs but no cats
+     [75005, '40g rrrrrrrr/8/8/8/8/8/2d2d2/8',
+             '40g rrrrrrrr/8/8/8/8/8/2c2c2/8'],
 
      # row 1 symmetrical
      [83846, '14s 1r4rr/rrc1cdr1/1hr3h1/2Rr4/3e4/1M1E1H2/1Cm1HC1R/RRRDDRRR'],
 
-     [87015, '28s rrr2rr1/2cdcd1r/3h2r1/8/HDE5/1r2e3/RRCD2C1/1RR2RRR'],
+     # with elephants but no camels
+     [87015, '28s rrr2rr1/2cdcd1r/3h2r1/8/HDE5/1r2e3/RRCD2C1/1RR2RRR',
+             '28s rrr2rr1/2cdcd1r/3h2r1/8/HDM5/1r2m3/RRCD2C1/1RR2RRR'],
+
      [90687, '9s rcrrrr1r/h4r1d/8/3E4/1d1m2c1/1H1Me1D1/1DCR1CRH/RRR1RRR1',
              '9s r1rrrrcr/d1r4h/8/4E3/1c2m1d1/1D1eM1H1/HRC1RCD1/1RRR1RRR'],
     ].each do |game_id, fen, normalized_fen|
