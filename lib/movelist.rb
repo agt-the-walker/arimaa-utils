@@ -38,9 +38,6 @@ class MoveList
     visited_fens = options[:skip_duplicates] ? Set.new : nil
 
     @moves.each_with_index do |move, ply|
-      move_number = (ply + 1) / NB_PLAYERS + 1
-      move_player = ply.odd? ? 'g' : 's'
-
       move.split(' ').each do |step|
         square = step[1..2]
         if ply < NB_PLAYERS  # initial position setup
@@ -74,7 +71,7 @@ class MoveList
         end
       end
 
-      fen = "#{move_player} #{current_fen(options[:normalize])}"
+      fen = "#{ply.odd? ? 'g' : 's'} #{current_fen(options[:normalize])}"
       if options[:skip_duplicates]
         if visited_fens.include?(fen)
           next
@@ -83,6 +80,7 @@ class MoveList
         end
       end
 
+      move_number = (ply + 1) / NB_PLAYERS + 1
       yield "#{move_number}#{fen}"
     end
   end
