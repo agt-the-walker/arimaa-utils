@@ -77,7 +77,7 @@ below). It accepts the following flags:
          28 1w RRRRRRRR/DHCMECHD  1b RHCEMCHR/RRRDDRRR
          28 1w RRRDDRRR/RHCMECHR  1b RHCDECMH/RRRRDRRR
 
-    # show the first ten positions of game 132386
+    # print the first ten positions of game 132386
     $ good-human-games | grep -w ^132386 | positions | head
     132386  1s 8/8/8/8/8/8/RHDMEDHR/RRRCCRRR
     132386  2g rrrdrrcr/hhcedrmr/8/8/8/8/RHDMEDHR/RRRCCRRR
@@ -90,7 +90,7 @@ below). It accepts the following flags:
     132386  5s rrr1rrcr/2cddrmr/hh6/1E6/1e6/1H4H1/R1DMCDR1/RRRC1RRR
     132386  6g rrr1rrcr/2cddrmr/hh6/1E6/He6/6H1/R1DMCDR1/RRRC1RRR
 
-    # show the corresponding normalized positions (due to vertical symmetry)
+    # print the corresponding normalized positions (due to vertical symmetry)
     $ good-human-games | grep -w ^132386 | positions -n | head
     132386  1s 8/8/8/8/8/8/RHDEMDHR/RRRCCRRR
     132386  2g rcrrdrrr/rmrdechh/8/8/8/8/RHDEMDHR/RRRCCRRR
@@ -103,7 +103,7 @@ below). It accepts the following flags:
     132386  5s rcrr1rrr/rmrddc2/6hh/6E1/6e1/1H4H1/1RDCMD1R/RRR1CRRR
     132386  6g rcrr1rrr/rmrddc2/6hh/6E1/6eH/1H6/1RDCMD1R/RRR1CRRR
 
-    # show the first ten non-repeated positions of game 132386
+    # print the first ten non-repeated positions of game 132386
     $ good-human-games | grep -w ^132386 | positions -s | head
     132386  1s 8/8/8/8/8/8/RHDMEDHR/RRRCCRRR
     132386  2g rrrdrrcr/hhcedrmr/8/8/8/8/RHDMEDHR/RRRCCRRR
@@ -116,11 +116,11 @@ below). It accepts the following flags:
     132386  6s rrr1rrcr/2cddrmr/hh6/1E6/1e6/H2M2H1/R1D1CDR1/RRRC1RRR
     132386  7g rrr1rr1r/2cddrcr/1h4m1/hE6/8/He1M2H1/R1D1CDR1/RRRC1RRR
 
-    # show the final position of the longest good human game
+    # print the final position of the longest good human game
     $ good-human-games | positions | sort -k2 -rn | head -1
     53484   136g 8/5c2/1H1rE1d1/8/5De1/1C2D3/8/7r
 
-    # show the corresponding normalized position (since camels were missing)
+    # print the corresponding normalized position (since camels were missing)
     $ good-human-games | grep -w ^53484 | positions -n | tail -1
     53484   136g 8/5c2/1H1rM1d1/8/5Dm1/1C2D3/8/7r
 
