@@ -5,7 +5,7 @@ set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . "$SCRIPT_DIR/lib/common.sh"
 
-head -1 "$GAME_DB"
+head -1 "$GAME_DB"  # header
 awk -F'\t' '
   $10 >= 1800 &&  # wrating
   $11 >= 1800 &&  # brating

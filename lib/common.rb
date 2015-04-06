@@ -11,8 +11,8 @@ def each_game
            else
              STDIN
            end
-  stream.each_with_index do |line, index|
-    next if index == 0  # header
+  stream.each do |line|
+    next if line.start_with?('id')  # header
 
     yield line.force_encoding('BINARY').split("\t")
   end
