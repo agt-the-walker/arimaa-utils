@@ -3,7 +3,7 @@
 set -e
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-. "$SCRIPT_DIR/common.sh"
+. "$SCRIPT_DIR/lib/common.sh"
 
 head -1 "$GAME_DB"
 awk -F'\t' '

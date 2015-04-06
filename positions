@@ -27,17 +27,7 @@ end
 GAMEID_COLUMN = 0  # i.e. 1st field
 MOVELIST_COLUMN = 27  # i.e. 28th field
 
-stream = if STDIN.tty?
-           GAME_DB=%x{. #{File.dirname(__FILE__)}/common.sh
-                      echo $GAME_DB}.chomp
-           open(GAME_DB)
-         else
-           STDIN
-         end
-stream.each_with_index do |line, index|
-  next if index == 0  # header
-
-  fields = line.force_encoding('BINARY').split("\t")
+each_game do |fields|
   MoveList.new(fields[MOVELIST_COLUMN]).each(options) do |fen|
     puts "#{fields[GAMEID_COLUMN]}\t#{fen}"
   end

@@ -42,17 +42,7 @@ def mirror_column(column)
   (2 * 'a'.ord + BOARD_SIZE - column.ord - 1).chr  # i.e. a => h, b => g, etc.
 end
 
-stream = if STDIN.tty?
-           GAME_DB=%x{. #{File.dirname(__FILE__)}/common.sh
-                      echo $GAME_DB}.chomp
-           open(GAME_DB)
-         else
-           STDIN
-         end
-stream.each_with_index do |line, index|
-  next if index == 0  # header
-
-  fields = line.force_encoding('BINARY').split("\t")
+each_game do |fields|
   next if fields[PLYCOUNT_COLUMN].to_i < NB_PLAYERS
 
   moves = fields[MOVELIST_COLUMN].split("\\n")

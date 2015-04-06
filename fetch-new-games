@@ -3,7 +3,7 @@
 set -e
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-. "$SCRIPT_DIR/common.sh"
+. "$SCRIPT_DIR/lib/common.sh"
 
 mkdir -p "$GAME_DIR"
 
