@@ -5,7 +5,7 @@
 This script downloads new archived games from
 [Arimaa](http://arimaa.com/arimaa/) into `$HOME/.arimaa-utils` (this location
 can be changed in `lib/common.sh`). It also builds a games database in the same
-location, which will be used by the two following scripts.
+location, which will be used by the following scripts.
 
 ## good-human-games
 
