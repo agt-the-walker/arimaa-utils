@@ -42,7 +42,7 @@ below). It accepts the following flags:
 * [GNU Tar](http://www.gnu.org/software/tar/)
 * [GNU Wget](http://www.gnu.org/software/wget/)
 * [Lynx](http://lynx.isc.org/)
-* [Ruby](http://www.ruby-lang.org/en/) 1.9.2+
+* [Ruby](http://www.ruby-lang.org/en/) 2.0+
 
 
 # Usage
