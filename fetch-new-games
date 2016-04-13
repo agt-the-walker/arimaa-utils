@@ -33,7 +33,7 @@ while read url; do
     db_rebuild_required=1
 done < <(lynx -dump -listonly -nonumbers \
           http://arimaa.com/arimaa/download/gameData |
-         egrep '/allgames[0-9]+\.tgz' | tac)
+         egrep '/allgames[0-9]+\.tgz$' | tac)
 
 if [[ ! -f $GAME_DB || -n "$db_rebuild_required" ]]; then
     >"$GAME_DB"
