@@ -83,8 +83,7 @@ below). It accepts the following flags:
          36 1w RRRDDRRR/RHCMECHR  1b RHCDECMH/RRRRDRRR
          29 1w RRRRRRRR/DHCMECHD  1b RHCEMCHR/RRRDDRRR
 
-    # the following command prints the most common Gold setups in good human
-    # games
+    # print the most common Gold setups in good human games
     $ good-human-games | normalized-setups | cut -d' ' -f1-2 | \
       sort | uniq -c | sort -rn | head
        1272 1w RRRDDRRR/RHCMECHR
@@ -98,8 +97,8 @@ below). It accepts the following flags:
          53 1w RRRCCRRR/DHRMERHD
          50 1w RRRDCRRR/RHCMEDHR
 
-    # the following command prints the most common Silver setups in good human
-    # games if Gold chooses the most common setup
+    # print the most common Silver setups in good human games if Gold chooses
+    # the most common setup
     $ good-human-games | normalized-setups | \
       grep -Po '(?<=^1w RRRDDRRR/RHCMECHR  ).*' | \
       sort | uniq -c | sort -rn | head
