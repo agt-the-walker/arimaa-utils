@@ -66,6 +66,10 @@ below). It accepts the following flags:
        3703 1w RRRCCRRR/RHDMEDHR  1b DHCEMCHD/RRRRRRRR
        1843 1w RRRRRRRR/DHCMECHD  1b DHCMECHD/RRRRRRRR
 
+    # number of good human games (see definition above) in the database
+    $ good-human-games | sed 1d | wc -l
+    3971
+
     # the following command prints the most common setups in good human games
     $ good-human-games | normalized-setups | sort | uniq -c | sort -rn | head
         277 1w RRRDDRRR/RHCMECHR  1b RHCEMCHR/RRRDDRRR
@@ -78,6 +82,37 @@ below). It accepts the following flags:
          37 1w RRRCDRRR/RHDMECHR  1b RHCEMCHR/RRRDDRRR
          36 1w RRRDDRRR/RHCMECHR  1b RHCDECMH/RRRRDRRR
          29 1w RRRRRRRR/DHCMECHD  1b RHCEMCHR/RRRDDRRR
+
+    # the following command prints the most common Gold setups in good human
+    # games
+    $ good-human-games | normalized-setups | cut -d' ' -f1-2 | \
+      sort | uniq -c | sort -rn | head
+       1272 1w RRRDDRRR/RHCMECHR
+        634 1w RRRCCRRR/RHDMEDHR
+        165 1w RCRDDRCR/RHRMERHR
+        159 1w RRRCDRRR/RHDMECHR
+        155 1w RRRRRRRR/DHCMECHD
+        108 1w RRRRRCRR/RHCDEDMH
+         63 1w RDRRDRRR/RHCMECHR
+         60 1w RDRCCRDR/RHRMERHR
+         53 1w RRRCCRRR/DHRMERHD
+         50 1w RRRDCRRR/RHCMEDHR
+
+    # the following command prints the most common Silver setups in good human
+    # games if Gold chooses the most common setup
+    $ good-human-games | normalized-setups | \
+      grep -Po '(?<=^1w RRRDDRRR/RHCMECHR  ).*' | \
+      sort | uniq -c | sort -rn | head
+        277 1b RHCEMCHR/RRRDDRRR
+        190 1b RHDEMDHR/RRRCCRRR
+         62 1b RHCDEDMH/RRRRRCRR
+         42 1b HMCEDCHR/RRRDRRRR
+         41 1b RHCEMDHR/RRRDCRRR
+         36 1b RHCDECMH/RRRRDRRR
+         29 1b RHREMRHR/RCRDDRCR
+         27 1b RHCEDCMH/RRRDRRRR
+         24 1b DHCEMCHD/RRRRRRRR
+         18 1b RHCEMCHR/RRRDRRDR
 
     # print the first ten positions of game 132386
     $ good-human-games | grep -w ^132386 | positions | head
