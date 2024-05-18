@@ -28,7 +28,7 @@ GAMEID_COLUMN = 0  # i.e. 1st field
 MOVELIST_COLUMN = 27  # i.e. 28th field
 
 each_game do |fields|
-  MoveList.new(fields[MOVELIST_COLUMN]).each(options) do |fen|
+  MoveList.new(fields[MOVELIST_COLUMN]).each(**options) do |fen|
     puts "#{fields[GAMEID_COLUMN]}\t#{fen}"
   end
 end

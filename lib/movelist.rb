@@ -28,7 +28,7 @@ class MoveList
 
   def each(**options)
     # http://blog.arkency.com/2014/01/ruby-to-enum-for-enumerator/
-    return enum_for(__method__, options) unless block_given?
+    return enum_for(__method__, **options) unless block_given?
 
     @board = {}  # key: square (for instance e4)
 
