@@ -18,7 +18,7 @@ game, rated, should last 10+ moves.
 ## normalized-setups
 
 This script prints normalized
-[setups](http://en.wikibooks.org/wiki/Arimaa/Initial_Piece_Placement) for both
+[setups](https://en.wikibooks.org/wiki/Arimaa/Initial_Piece_Placement) for both
 players from the games database built by `fetch-new-games`. It can also act as
 a filter (see example below). By convention, the Gold elephant is always placed
 on the right (from Gold's point of view).
@@ -39,12 +39,12 @@ below). It accepts the following flags:
 
 # Requirements
 
-* [Bash](http://www.gnu.org/software/bash/)
-* [GNU Coreutils](http://www.gnu.org/software/coreutils/)
-* [GNU Tar](http://www.gnu.org/software/tar/)
-* [GNU Wget](http://www.gnu.org/software/wget/)
-* [Lynx](http://lynx.isc.org/)
-* [Ruby](http://www.ruby-lang.org/en/) 2.0+
+* [Bash](https://www.gnu.org/software/bash/)
+* [GNU Coreutils](https://www.gnu.org/software/coreutils/)
+* [GNU Tar](https://www.gnu.org/software/tar/)
+* [GNU Wget](https://www.gnu.org/software/wget/)
+* [Lynx](https://lynx.invisible-island.net/)
+* [Ruby](https://www.ruby-lang.org/en/) 2.0+
 
 
 # Usage
@@ -164,5 +164,5 @@ below). It accepts the following flags:
 # Limitations
 
 `fetch-new-games` is very slow when it has to rebuild the games database. I
-should probably use [SQLite](http://www.sqlite.org/) instead, as in
-[Pastebin example](http://pastebin.com/BaXKz6m9).
+should probably use [SQLite](https://www.sqlite.org/) instead, as in
+[Pastebin example](https://pastebin.com/BaXKz6m9).
