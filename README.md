@@ -1,3 +1,4 @@
+![Shell workflow](https://github.com/agt-the-walker/arimaa-utils/actions/workflows/shell.yml/badge.svg)
 ![Ruby workflow](https://github.com/agt-the-walker/arimaa-utils/actions/workflows/ruby.yml/badge.svg)
 
 # Purpose
