@@ -1,7 +1,0 @@
-language: ruby
-rvm:
-  - 2.3.1
-  - 2.2
-  - 2.1
-  - 2.0
-script: ./lib/test_movelist.rb

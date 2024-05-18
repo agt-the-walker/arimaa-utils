@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/agt-the-walker/arimaa-utils.svg?branch=master)](https://travis-ci.org/agt-the-walker/arimaa-utils)
+![Ruby workflow](https://github.com/agt-the-walker/arimaa-utils/actions/workflows/ruby.yml/badge.svg)
 
 # Purpose
 
