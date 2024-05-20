@@ -13,9 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Install dependencies
-      run: |
-        sudo apt-get install -y libboost-program-options-dev
     - name: shellcheck
       run: |
         shellcheck -x fetch-new-games good-human-games
