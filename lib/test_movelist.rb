@@ -7,6 +7,7 @@ require_relative 'movelist'
 class TestMoveList < Test::Unit::TestCase
   def setup
     return if defined?(@@move_lists)
+
     @@move_lists = {}
     Dir["#{File.dirname(__FILE__)}/testdata/*.txt"].sort.each do |path|
       @@move_lists[File.basename(path, '.txt').to_i] =
