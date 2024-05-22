@@ -51,7 +51,7 @@ class MoveList
 
           if options[:normalize]
             nb_pieces[piece.downcase] -= 1
-            if nb_pieces[piece.downcase] == 0 # last one was just captured
+            if (nb_pieces[piece.downcase]).zero? # last one was just captured
               downgrade_stronger_pieces(piece.downcase, nb_pieces)
             end
           end
@@ -117,7 +117,7 @@ private
 
       COLUMN_RANGE.each do |column|
         if (piece = @board[column + row])
-          if empty_nb > 0
+          if empty_nb.positive?
             buffer << empty_nb.to_s
             empty_nb = 0
           end
@@ -127,9 +127,9 @@ private
         end
       end
 
-      buffer << empty_nb.to_s if empty_nb > 0
+      buffer << empty_nb.to_s if empty_nb.positive?
 
-      if normalize and normalize_cmp == 0
+      if normalize and normalize_cmp.zero?
         normalize_cmp = buffer <=> buffer.reverse
       end
       normalize_cmp <= 0 ? buffer : buffer.reverse
