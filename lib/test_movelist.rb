@@ -37,7 +37,7 @@ class TestMoveList < Test::Unit::TestCase
   end
 
   def test_fen_position
-     # with elephants but no camels
+    # with elephants but no camels
     [[2077, '39g 1r5r/1dhr2rR/1H1Rr1dE/3e2R1/8/3R1hcR/5RDr/4r1DR',
             '39g 1r5r/1dhr2rR/1H1Rr1dM/3m2R1/8/3R1hcR/5RDr/4r1DR'],
 
