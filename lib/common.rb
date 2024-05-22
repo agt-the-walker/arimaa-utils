@@ -13,7 +13,7 @@ def each_game
              $stdin
            end
   stream.each do |line|
-    next if line.start_with?('id')  # header
+    next if line.start_with?('id') # header
 
     yield line.force_encoding('BINARY').split("\t")
   end

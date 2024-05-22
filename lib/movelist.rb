@@ -7,20 +7,20 @@ require_relative 'common'
 class MoveList
   COLUMN_RANGE = Range.new('a', ('a'.ord + BOARD_SIZE).chr, true)
   ROW_RANGE = Range.new(1.to_s, BOARD_SIZE.to_s)
-  PECKING_ORDER = 'rcdhme'  # from weakest to strongest
+  PECKING_ORDER = 'rcdhme' # from weakest to strongest
 
   def initialize(movelist)
     @moves = []
     movelist.split('\n').each do |move|
       if move.end_with?('takeback')
         @moves.pop
-      elsif move !~ /^[1-9]/  # for instance: 7b\n rc7s rc6s db6s db5s
+      elsif move !~ /^[1-9]/ # for instance: 7b\n rc7s rc6s db6s db5s
         @moves[-1] += move
       else
-        @moves << move.sub(/^\w+\s?/, '')  # remove first word (move number)
+        @moves << move.sub(/^\w+\s?/, '') # remove first word (move number)
       end
     end
-    @moves.pop  # movelist typically ends with 39w or 50b, which can be ignored
+    @moves.pop # movelist typically ends with 39w or 50b, which can be ignored
   end
 
   def plies
@@ -31,7 +31,7 @@ class MoveList
     # http://blog.arkency.com/2014/01/ruby-to-enum-for-enumerator/
     return enum_for(__method__, **options) unless block_given?
 
-    @board = {}  # key: square (for instance e4)
+    @board = {} # key: square (for instance e4)
 
     # piece type => number of them on the board for all players
     nb_pieces = options[:normalize] ? Hash.new(0) : nil
@@ -41,23 +41,23 @@ class MoveList
     @moves.each_with_index do |move, ply|
       move.split(' ').each do |step|
         square = step[1..2]
-        if ply < NB_PLAYERS  # initial position setup
+        if ply < NB_PLAYERS # initial position setup
           piece = step[0]
 
           @board[square] = piece
           if options[:normalize]
             nb_pieces[piece.downcase] += 1
           end
-        elsif step[3] == 'x'  # piece capture
+        elsif step[3] == 'x' # piece capture
           piece = @board.delete(square)
 
           if options[:normalize]
             nb_pieces[piece.downcase] -= 1
-            if nb_pieces[piece.downcase] == 0  # last one was just captured
+            if nb_pieces[piece.downcase] == 0 # last one was just captured
               downgrade_stronger_pieces(piece.downcase, nb_pieces)
             end
           end
-        else  # piece move
+        else # piece move
           dest_column = case step[3]
                           when 'e' then (square[0].ord + 1).chr
                           when 'w' then (square[0].ord - 1).chr

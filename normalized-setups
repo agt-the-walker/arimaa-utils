@@ -28,7 +28,7 @@ def print_setup(move_number, square2piece, setup_to_mirror)
 end
 
 def mirror_board(square2piece)
-  res = {}  # square => piece
+  res = {} # square => piece
   square2piece.each do |square, piece|
     res[mirror_square(square)] = piece
   end
@@ -40,7 +40,7 @@ def mirror_square(square)
 end
 
 def mirror_column(column)
-  ((2 * 'a'.ord) + BOARD_SIZE - column.ord - 1).chr  # i.e. a => h, b => g, etc.
+  ((2 * 'a'.ord) + BOARD_SIZE - column.ord - 1).chr # i.e. a => h, b => g, etc.
 end
 
 each_game do |fields|
@@ -49,11 +49,11 @@ each_game do |fields|
   moves = fields[MOVELIST_COLUMN].split("\\n")
   if moves[1] == '1b takeback'
     # move sequence is: 1w foo, 1b takeback, 1w bar, 1b baz
-    moves.shift(2)  # therefore we only keep: 1w bar, 1b baz
+    moves.shift(2) # therefore we only keep: 1w bar, 1b baz
   end
   if moves[2] == '2w takeback'
     # move sequence is: 1w foo, 1b bar, 2w takeback, 1b baz
-    moves.slice!(1, 2)  # therefore we only keep: 1w foo, 1b baz
+    moves.slice!(1, 2) # therefore we only keep: 1w foo, 1b baz
   end
 
   setup_to_mirror = false
