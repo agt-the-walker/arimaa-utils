@@ -59,12 +59,12 @@ class MoveList
           dest_column = case step[3]
                         when 'e' then (square[0].ord + 1).chr
                         when 'w' then (square[0].ord - 1).chr
-                          else square[0]
+                        else square[0]
                         end
           dest_row = case step[3]
                      when 'n' then (square[1].ord + 1).chr
                      when 's' then (square[1].ord - 1).chr
-                       else square[1]
+                     else square[1]
                      end
           @board[dest_column + dest_row] = @board.delete(square)
         end
