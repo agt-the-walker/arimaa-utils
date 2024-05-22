@@ -63,7 +63,7 @@ each_game do |fields|
       piece = word[0].upcase
       square = word[1..2]
 
-      if first_player(move_number) && (piece == 'E') && square =~(/^[a-d]/)
+      if first_player(move_number) && (piece == 'E') && square =~ (/^[a-d]/)
         setup_to_mirror = true
       end
 
