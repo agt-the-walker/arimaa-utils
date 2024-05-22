@@ -7,7 +7,7 @@ require_relative 'lib/movelist'
 ##### Argument parsing
 
 def usage
-  abort "Usage: #$0 [-n|--normalize] [-s|--skip_duplicates]"
+  abort "Usage: #{$PROGRAM_NAME} [-n|--normalize] [-s|--skip_duplicates]"
 end
 
 options = {}
