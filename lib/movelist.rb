@@ -128,7 +128,7 @@ class MoveList
 
       buffer << empty_nb.to_s if empty_nb.positive?
 
-      if normalize and normalize_cmp.zero?
+      if normalize && normalize_cmp.zero?
         normalize_cmp = buffer <=> buffer.reverse
       end
       normalize_cmp <= 0 ? buffer : buffer.reverse
