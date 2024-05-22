@@ -17,7 +17,7 @@ def print_setup(move_number, square2piece, setup_to_mirror)
          square2piece.sort_by { |square, _piece| square.reverse }
                      .collect { |_row, piece| piece }
                      .each_slice(BOARD_SIZE)
-                     .collect { |row| row.join }.join('/')
+                     .collect(&:join).join('/')
   if first_player(move_number)
     print '  '
   else
