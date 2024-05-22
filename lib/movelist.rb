@@ -132,7 +132,6 @@ class MoveList
         normalize_cmp = buffer <=> buffer.reverse
       end
       normalize_cmp <= 0 ? buffer : buffer.reverse
-
     end.reverse.join('/')
   end
 end
