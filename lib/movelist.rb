@@ -83,7 +83,7 @@ class MoveList
     end
   end
 
-private
+  private
 
   def downgrade_stronger_pieces(piece, nb_pieces)
     nb_pieces.delete(piece)
