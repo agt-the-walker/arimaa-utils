@@ -44,7 +44,7 @@ end
 each_game do |fields|
   next if fields[PLYCOUNT_COLUMN].to_i < NB_PLAYERS
 
-  moves = fields[MOVELIST_COLUMN].split("\\n")
+  moves = fields[MOVELIST_COLUMN].split('\\n')
   if moves[1] == '1b takeback'
     # move sequence is: 1w foo, 1b takeback, 1w bar, 1b baz
     moves.shift(2) # therefore we only keep: 1w bar, 1b baz
