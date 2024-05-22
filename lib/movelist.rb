@@ -72,11 +72,10 @@ class MoveList
 
       fen = "#{ply.odd? ? 'g' : 's'} #{current_fen(options[:normalize])}"
       if options[:skip_duplicates]
-        if visited_fens.include?(fen)
-          next
-        else
-          visited_fens << fen
-        end
+        next if visited_fens.include?(fen)
+
+        visited_fens << fen
+
       end
 
       move_number = ((ply + 1) / NB_PLAYERS) + 1
