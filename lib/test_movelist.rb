@@ -11,7 +11,7 @@ class TestMoveList < Test::Unit::TestCase
     @@move_lists = {}
     Dir["#{File.dirname(__FILE__)}/testdata/*.txt"].sort.each do |path|
       @@move_lists[File.basename(path, '.txt').to_i] =
-          MoveList.new(IO.read(path))
+        MoveList.new(IO.read(path))
     end
 
   end
