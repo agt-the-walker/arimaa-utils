@@ -5,12 +5,12 @@ BOARD_SIZE = 8
 NB_PLAYERS = 2
 
 def each_game
-  stream = if STDIN.tty?
+  stream = if $stdin.tty?
              game_db=%x{. #{File.dirname(__FILE__)}/common.sh
                         echo $GAME_DB}.chomp
              open(game_db)
            else
-             STDIN
+             $stdin
            end
   stream.each do |line|
     next if line.start_with?('id')  # header
