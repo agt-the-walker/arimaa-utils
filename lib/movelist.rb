@@ -91,10 +91,10 @@ private
   def downgrade_stronger_pieces(piece, nb_pieces)
     nb_pieces.delete(piece)
 
-    (PECKING_ORDER.index(piece)+1).upto(PECKING_ORDER.size-1) do |index|
+    (PECKING_ORDER.index(piece) + 1).upto(PECKING_ORDER.size - 1) do |index|
       stronger_piece = PECKING_ORDER[index]
       if nb_pieces[stronger_piece]
-        weaker_piece = PECKING_ORDER[index-1]
+        weaker_piece = PECKING_ORDER[index - 1]
         nb_pieces[weaker_piece] = nb_pieces.delete(stronger_piece)
 
         @board.each do |square, piece|

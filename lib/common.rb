@@ -6,7 +6,7 @@ NB_PLAYERS = 2
 
 def each_game
   stream = if $stdin.tty?
-             game_db=%x{. #{File.dirname(__FILE__)}/common.sh
+             game_db = %x{. #{File.dirname(__FILE__)}/common.sh
                         echo $GAME_DB}.chomp
              open(game_db)
            else
