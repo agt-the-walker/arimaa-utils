@@ -95,10 +95,10 @@ class MoveList
       weaker_piece = PECKING_ORDER[index - 1]
       nb_pieces[weaker_piece] = nb_pieces.delete(stronger_piece)
 
-      @board.each do |square, piece|
-        next unless piece.downcase == stronger_piece
+      @board.each do |square, piece_|
+        next unless piece_.downcase == stronger_piece
 
-        @board[square] = if piece =~ /[A-Z]/
+        @board[square] = if piece_ =~ /[A-Z]/
                            weaker_piece.upcase
                          else
                            weaker_piece
