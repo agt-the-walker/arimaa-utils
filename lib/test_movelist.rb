@@ -16,9 +16,9 @@ class TestMoveList < Test::Unit::TestCase
   end
 
   def test_plies
-    expected_plies = [28, 9, 76, 75, 129, 77, 65, 73, 137, 128,   # 00033.txt...
-                      122, 71, 61, 106, 154, 109, 78, 82, 134, 92,# 25021.txt...
-                      17]                                         # 90687
+    expected_plies = [28, 9, 76, 75, 129, 77, 65, 73, 137, 128,    # 00033
+                      122, 71, 61, 106, 154, 109, 78, 82, 134, 92, # 25021
+                      17]                                          # 90687
     @move_lists.each do |game_id, move_list|
       assert_equal(expected_plies.shift, move_list.plies, game_id)
     end
