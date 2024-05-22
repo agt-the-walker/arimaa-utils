@@ -8,7 +8,7 @@ def each_game
   stream = if $stdin.tty?
              game_db = `. #{File.dirname(__FILE__)}/common.sh
                         echo $GAME_DB`.chomp
-             open(game_db)
+             File.open(game_db)
            else
              $stdin
            end
