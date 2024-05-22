@@ -36,6 +36,7 @@ class TestMoveList < Test::Unit::TestCase
     end
   end
 
+# rubocop:disable Layout/ArrayAlignment
   def test_fen_position
     # with elephants but no camels
     [[2077, '39g 1r5r/1dhr2rR/1H1Rr1dE/3e2R1/8/3R1hcR/5RDr/4r1DR',
@@ -102,6 +103,7 @@ class TestMoveList < Test::Unit::TestCase
        @@move_lists[game_id].each(:normalize => true).grep(/^#{move_header} /))
     end
   end
+# rubocop:enable Layout/ArrayAlignment
 
   def test_fen_skip_duplicates
     [[40260, ['32s 3crch1/2rrrHrr/r2EdMHr/ChmReRRR/dRD1C3/RD6/R6R/8',

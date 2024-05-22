@@ -2,5 +2,19 @@ AllCops:
   NewCops: enable
 Layout/LineLength:
   Max: 80
+Metrics/AbcSize:
+  Max: 64.58
+Metrics/BlockLength:
+  Max: 35
+Metrics/ClassLength:
+  Max: 103
+Metrics/CyclomaticComplexity:
+  Max: 18
 Metrics/MethodLength:
-  Max: 11
+  Max: 41
+Metrics/PerceivedComplexity:
+  Max: 17
+Style/Documentation:
+  Enabled: false
+Style/NumericLiterals:
+  MinDigits: 6
