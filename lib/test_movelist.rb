@@ -32,8 +32,7 @@ class TestMoveList < Test::Unit::TestCase
      [138, ['1s 8/8/8/8/8/8/HDCMECDH/RRRRRRRR',
             '2g rrrrerrr/hdcmrcdh/8/8/8/8/HDCMECDH/RRRRRRRR']],
      [87015, ['1s 8/8/8/8/8/8/RHCMECHR/RDRRDRRR',
-              '2g rrrdcrrr/rhcemdhr/8/8/8/8/RHCMECHR/RDRRDRRR']]
-    ].each do |game_id, fens|
+              '2g rrrdcrrr/rhcemdhr/8/8/8/8/RHCMECHR/RDRRDRRR']]].each do |game_id, fens|
       assert_equal(fens, @@move_lists[game_id].each.first(NB_PLAYERS))
     end
   end
@@ -97,8 +96,7 @@ class TestMoveList < Test::Unit::TestCase
              '28s rrr2rr1/2cdcd1r/3h2r1/8/HDM5/1r2m3/RRCD2C1/1RR2RRR'],
 
      [90687, '9s rcrrrr1r/h4r1d/8/3E4/1d1m2c1/1H1Me1D1/1DCR1CRH/RRR1RRR1',
-             '9s r1rrrrcr/d1r4h/8/4E3/1c2m1d1/1D1eM1H1/HRC1RCD1/1RRR1RRR']
-    ].each do |game_id, fen, normalized_fen|
+             '9s r1rrrrcr/d1r4h/8/4E3/1c2m1d1/1D1eM1H1/HRC1RCD1/1RRR1RRR']].each do |game_id, fen, normalized_fen|
       move_header = fen.split.first
       assert_equal([fen], @@move_lists[game_id].each.grep(/^#{move_header} /))
       assert_equal([normalized_fen || fen],
@@ -122,8 +120,7 @@ class TestMoveList < Test::Unit::TestCase
               '27g rrr2rrr/1dc1cdhr/Hh1E2m1/8/De6/r2D2MH/R1C2C1R/RRR2RRR',
               '27s rrr2rrr/1dc1cdhr/Hh1E2m1/8/1e6/Dr1D2MH/R1C2C1R/RRR2RRR',
               '35g 1r3rrr/r1r1cdhr/dH1E1m2/2hD4/3e4/RD4H1/r1C1MC1R/RRRcR1RR',
-              '35s 1r3rrr/r1r1cdhr/dH1E1m2/2hD4/3e4/RD4H1/r1CcMC1R/RRRR2RR']]
-    ].each do |game_id, duplicate_fens|
+              '35s 1r3rrr/r1r1cdhr/dH1E1m2/2hD4/3e4/RD4H1/r1CcMC1R/RRRR2RR']]].each do |game_id, duplicate_fens|
       fens = @@move_lists[game_id].each.to_a
       unique_fens = @@move_lists[game_id].each(:skip_duplicates => true).to_a
 
