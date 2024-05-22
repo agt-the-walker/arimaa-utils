@@ -39,7 +39,7 @@ class MoveList
     visited_fens = options[:skip_duplicates] ? Set.new : nil
 
     @moves.each_with_index do |move, ply|
-      move.split(' ').each do |step|
+      move.split.each do |step|
         square = step[1..2]
         if ply < NB_PLAYERS # initial position setup
           piece = step[0]

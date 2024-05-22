@@ -98,7 +98,7 @@ class TestMoveList < Test::Unit::TestCase
      [90687, '9s rcrrrr1r/h4r1d/8/3E4/1d1m2c1/1H1Me1D1/1DCR1CRH/RRR1RRR1',
              '9s r1rrrrcr/d1r4h/8/4E3/1c2m1d1/1D1eM1H1/HRC1RCD1/1RRR1RRR'],
     ].each do |game_id, fen, normalized_fen|
-      move_header = fen.split(' ').first
+      move_header = fen.split.first
       assert_equal([fen], @@move_lists[game_id].each.grep(/^#{move_header} /))
       assert_equal([normalized_fen || fen],
        @@move_lists[game_id].each(:normalize => true).grep(/^#{move_header} /))
