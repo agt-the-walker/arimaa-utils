@@ -114,7 +114,7 @@ private
     normalize_cmp = 0
 
     ROW_RANGE.collect do |row|
-      buffer = ''
+      buffer = +''
       empty_nb = 0
 
       COLUMN_RANGE.each do |column|
