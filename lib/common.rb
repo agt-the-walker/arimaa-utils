@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 BOARD_SIZE = 8
 NB_PLAYERS = 2
