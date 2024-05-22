@@ -100,7 +100,7 @@ class TestMoveList < Test::Unit::TestCase
       move_header = fen.split.first
       assert_equal([fen], @@move_lists[game_id].each.grep(/^#{move_header} /))
       assert_equal([normalized_fen || fen],
-       @@move_lists[game_id].each(:normalize => true).grep(/^#{move_header} /))
+       @@move_lists[game_id].each(normalize: true).grep(/^#{move_header} /))
     end
   end
 # rubocop:enable Layout/ArrayAlignment
@@ -123,7 +123,7 @@ class TestMoveList < Test::Unit::TestCase
               '35g 1r3rrr/r1r1cdhr/dH1E1m2/2hD4/3e4/RD4H1/r1C1MC1R/RRRcR1RR',
               '35s 1r3rrr/r1r1cdhr/dH1E1m2/2hD4/3e4/RD4H1/r1CcMC1R/RRRR2RR']]].each do |game_id, duplicate_fens|
       fens = @@move_lists[game_id].each.to_a
-      unique_fens = @@move_lists[game_id].each(:skip_duplicates => true).to_a
+      unique_fens = @@move_lists[game_id].each(skip_duplicates: true).to_a
 
       assert_equal(duplicate_fens, fens - unique_fens)
       assert_equal(fens.size - duplicate_fens.size, unique_fens.size)
