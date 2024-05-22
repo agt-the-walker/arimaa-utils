@@ -11,9 +11,7 @@ def first_player(move_number)
 end
 
 def print_setup(move_number, square2piece, setup_to_mirror)
-  if setup_to_mirror
-    mirror_board(square2piece)
-  end
+  mirror_board(square2piece) if setup_to_mirror
 
   printf '%s %s', move_number,
          square2piece.sort_by { |square, _piece| square.reverse }

@@ -45,9 +45,7 @@ class MoveList
           piece = step[0]
 
           @board[square] = piece
-          if options[:normalize]
-            nb_pieces[piece.downcase] += 1
-          end
+          nb_pieces[piece.downcase] += 1 if options[:normalize]
         elsif step[3] == 'x' # piece capture
           piece = @board.delete(square)
 
@@ -129,9 +127,7 @@ private
         end
       end
 
-      if empty_nb > 0
-        buffer << empty_nb.to_s
-      end
+      buffer << empty_nb.to_s if empty_nb > 0
 
       if normalize and normalize_cmp == 0
         normalize_cmp = buffer <=> buffer.reverse
