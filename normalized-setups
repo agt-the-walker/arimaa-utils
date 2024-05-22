@@ -15,8 +15,8 @@ def print_setup(move_number, square2piece, setup_to_mirror)
   end
 
   printf '%s %s', move_number,
-         square2piece.sort_by { |square, piece| square.reverse }\
-                     .collect { |row, piece| piece }\
+         square2piece.sort_by { |square, _piece| square.reverse }\
+                     .collect { |_row, piece| piece }\
                      .each_slice(BOARD_SIZE)\
                      .collect { |row| row.join }.join('/')
   if first_player(move_number)
@@ -39,7 +39,7 @@ def mirror_square(square)
 end
 
 def mirror_column(column)
-  (2 * 'a'.ord + BOARD_SIZE - column.ord - 1).chr  # i.e. a => h, b => g, etc.
+  ((2 * 'a'.ord) + BOARD_SIZE - column.ord - 1).chr  # i.e. a => h, b => g, etc.
 end
 
 each_game do |fields|

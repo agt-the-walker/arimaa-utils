@@ -1,0 +1,6 @@
+AllCops:
+  NewCops: enable
+Layout/LineLength:
+  Max: 80
+Metrics/MethodLength:
+  Max: 11

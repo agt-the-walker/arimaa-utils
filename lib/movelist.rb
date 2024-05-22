@@ -80,7 +80,7 @@ class MoveList
         end
       end
 
-      move_number = (ply + 1) / NB_PLAYERS + 1
+      move_number = ((ply + 1) / NB_PLAYERS) + 1
       yield "#{move_number}#{fen}"
     end
   end
@@ -117,7 +117,7 @@ private
       empty_nb = 0
 
       COLUMN_RANGE.each do |column|
-        if piece = @board[column + row]
+        if (piece = @board[column + row])
           if empty_nb > 0
             buffer << empty_nb.to_s
             empty_nb = 0
