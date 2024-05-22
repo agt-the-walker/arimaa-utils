@@ -13,7 +13,6 @@ class TestMoveList < Test::Unit::TestCase
       @@move_lists[File.basename(path, '.txt').to_i] =
         MoveList.new(File.read(path))
     end
-
   end
 
   def test_plies
