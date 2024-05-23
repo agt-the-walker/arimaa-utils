@@ -20,6 +20,10 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
+    - name: rubocop
+      run: |
+        gem install rubocop
+        rubocop normalized-setups positions lib/*.rb
     - name: Test
       run: |
         ./lib/test_movelist.rb

@@ -13,11 +13,11 @@ end
 def print_setup(move_number, square2piece, setup_to_mirror)
   mirror_board(square2piece) if setup_to_mirror
 
-  printf '%s %s', move_number,
-         square2piece.sort_by { |square, _piece| square.reverse }
-                     .collect { |_row, piece| piece }
-                     .each_slice(BOARD_SIZE)
-                     .collect(&:join).join('/')
+  print move_number, ' ',
+        square2piece.sort_by { |square, _piece| square.reverse }
+                    .collect { |_row, piece| piece }
+                    .each_slice(BOARD_SIZE)
+                    .collect(&:join).join('/')
   if first_player(move_number)
     print '  '
   else
