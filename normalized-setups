@@ -6,7 +6,7 @@ require_relative 'lib/common'
 PLYCOUNT_COLUMN = 23  # i.e. 24th field
 MOVELIST_COLUMN = 27  # i.e. 28th field
 
-def first_player(move_number)
+def first_player?(move_number)
   move_number == '1w'
 end
 
@@ -18,7 +18,7 @@ def print_setup(move_number, square2piece, setup_to_mirror)
                     .collect { |_row, piece| piece }
                     .each_slice(BOARD_SIZE)
                     .collect(&:join).join('/')
-  if first_player(move_number)
+  if first_player?(move_number)
     print '  '
   else
     print "\n"
@@ -63,7 +63,7 @@ each_game do |fields|
       piece = word[0].upcase
       square = word[1..2]
 
-      if first_player(move_number) && (piece == 'E') && square =~ (/^[a-d]/)
+      if first_player?(move_number) && (piece == 'E') && square =~ /^[a-d]/
         setup_to_mirror = true
       end
 

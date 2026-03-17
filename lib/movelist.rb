@@ -51,7 +51,7 @@ class MoveList
 
           if options[:normalize]
             nb_pieces[piece.downcase] -= 1
-            if (nb_pieces[piece.downcase]).zero? # last one was just captured
+            if nb_pieces[piece.downcase].zero? # last one was just captured
               downgrade_stronger_pieces(piece.downcase, nb_pieces)
             end
           end
